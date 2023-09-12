@@ -35,7 +35,7 @@ int main(void)
 	{
 		if (f1o > 0)
 			printf("%lu", f1o);
-		initial10s = numLength(max) - 1 - numlength(f1);
+		initial10s = numLength(max) - 1 - numLength(f1);
 		while (f1o > 0 && initial10s > 0)
 		{
 			printf("%d", 0);
