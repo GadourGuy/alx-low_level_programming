@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <math.h>
 
+/**
+ * main - prints largest prime number
+ *
+ * Return: returns 0
+ */
 int main(void)
 {
 	long n = 612852475143;
