@@ -9,5 +9,15 @@
 
 void rev_string(char *s)
 {
-	print_rev(s);
+	int i;
+	int length;
+	int j;
+
+	length = strlen(s);
+	j = length;
+	for (i = 0; i < length; ++i)
+	{
+		s[i] = s[j];
+		j--;
+	}
 }
