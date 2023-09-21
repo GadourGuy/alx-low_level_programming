@@ -14,13 +14,11 @@ char *cap_string(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == ' ' || str[i] == '\n' || str[i] == '.')
+		if (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '.')
 		{
-			i++;
-			while (str[i] == ' ' || str[i] == '\n' || str[i] == '.')
-			{
-				i++;
-			}
+			++i;
+			while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '.')
+				++i;
 			if (isalpha(str[i]))
 				str[i] = toupper(str[i]);
 		}
