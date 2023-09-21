@@ -1,28 +1,49 @@
 #include "main.h"
 
 /**
- * *cap_string - a function that capitalizes words of a string
- * @str: string to be capitalized
+ * isspecial - checks if the char is special char
+ * @ch: char
  *
- * Return: pointer to the string str
+ * Return: 0 or 1
+ */
+
+int isspecial(char ch)
+{
+	int i;
+	char special[] = " \t\n,.!?\"(){}";
+
+	for (i =0; i < 12; i++)
+	{
+		if (ch == special[i])
+			return (1);
+	}
+	return (0);
+}
+
+/**
+ * *cap_string -  function that capitalizes all words of a string
+ * @str: input string
+ *
+ * Return: string with captilazed words
  */
 
 char *cap_string(char *str)
 {
-	int i;
+	char *ptr = str;
+	int foundspecial = 1;
 
-	i = 0;
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '.')
+		if (isspecial(*str))
+			foundspecial = 1;
+		else if (islower(*str) && foundspecial)
 		{
-			++i;
-			while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '.')
-				++i;
-			if (isalpha(str[i]))
-				str[i] = toupper(str[i]);
+			*str -= 32;
+			foundspecial = 0;
 		}
-		i++;
+		else
+			foundspecial = 0;
+		str++;
 	}
-	return (str);
+	return (ptr);
 }
