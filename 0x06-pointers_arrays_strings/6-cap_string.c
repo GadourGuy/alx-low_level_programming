@@ -12,7 +12,7 @@ int isspecial(char ch)
 	int i;
 	char special[] = " \t\n,.!?\"(){}";
 
-	for (i =0; i < 12; i++)
+	for (i = 0; i < 12; i++)
 	{
 		if (ch == special[i])
 			return (1);

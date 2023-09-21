@@ -7,9 +7,10 @@
 
 char *leet(char *str)
 {
+	char *cp = str;
 	unsigned int i;
 	char s[] = {'A', 'E', 'O', 'T', 'L'};
-	char value[] = {4, 3, 0, 7, 1};
+	int value[] = {4, 3, 0, 7, 1};
 
 	while (*str)
 	{
@@ -22,5 +23,5 @@ char *leet(char *str)
 		}
 		str++;
 	}
-	return (str);
+	return (cp);
 }
