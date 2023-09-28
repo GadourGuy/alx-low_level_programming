@@ -4,7 +4,7 @@
  * checkPrime - checks for a prime number
  * @start: search begining
  * @end: search end
- * 
+ *
  * Return: return 1 if succsesfull 0 if not
  */
 
