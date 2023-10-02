@@ -21,8 +21,7 @@ int main(int argc, char *argv[])
 		{
 			if (!isdigit(*argv[i]))
 			{
-				printf("Error\n");
-				return (1);
+				return (printf("Error\n"), 1);
 			}
 		}
 		for (j = 1; j < argc; j++)
@@ -31,6 +30,5 @@ int main(int argc, char *argv[])
 		}
 	}
 	printf("%d\n", sum);
-	
 	return (0);
 }
