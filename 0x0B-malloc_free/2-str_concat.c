@@ -34,7 +34,7 @@ char *str_concat(char *s1, char *s2)
 			new[i] = s2[i];
 	}
 	else if (s1 == NULL && s2 == NULL)
-		new = "\0";
+		new = " ";
 	else
 		return (NULL);
 	return (new);
