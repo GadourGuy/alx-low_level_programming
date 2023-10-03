@@ -33,6 +33,8 @@ char *str_concat(char *s1, char *s2)
 		for (i = 0; i < strlen(s2); i++)
 			new[i] = s2[i];
 	}
+	else if (s1 == NULL && s2 == NULL)
+		new = "\0";
 	else
 		return (NULL);
 	return (new);
