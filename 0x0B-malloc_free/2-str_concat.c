@@ -28,9 +28,13 @@ char *str_concat(char *s1, char *s2)
 	unsigned int i, size1, size2;
 	char *new;
 
+	if (s1 == NULL)
+		s1 = "\0";
+	if (s2 == NULL)
+		s2 = "\0";
 	size1 = length(s1);
 	size2 = length(s2);
-	new = malloc(size1 + size2);
+	new = malloc(size1 + size2 + 1);
 	if (new != NULL)
 	{
 		for (i = 0; i < size1; i++)
