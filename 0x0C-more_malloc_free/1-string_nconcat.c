@@ -1,0 +1,53 @@
+#include "main.h"
+
+/**
+ * length - counts length of string
+ * @str: input string
+ *
+ * Return: length of string
+ */
+
+unsigned int length(char *str)
+{
+	unsigned int i = 0;
+
+	for (; str[i] != '\0'; i++)
+		;
+	return (i);
+}
+/**
+ * string_nconcat - concatenates two strings by n bytes
+ * @s1: first string
+ * @s2: second string
+ * @n: number of bytes copied
+ *
+ * Return: pointer to the new string
+ */
+
+char *string_nconcat(char *s1, char *s2, unsigned int n)
+{
+	unsigned int i, size1, size2;
+	char *new;
+
+	size1 = length(s1);
+	for (size2 = 0; size2 <= n; size2++)
+		;
+	if (size2 >= length(s2))
+		size2 = length(s2);
+	new = malloc(sizeof(s1) * size1 + sizeof(s2) * size2 + 1);
+	if (new == NULL)
+	{
+		return (NULL);
+	}
+	else
+	{
+		for (i = 0; i < (size1 + size2); i++)
+		{
+			if (i < size1)
+				new[i] = s1[i];
+			else
+				new[i] = s2[i - size1];
+		}
+		return (new);
+	}
+}
