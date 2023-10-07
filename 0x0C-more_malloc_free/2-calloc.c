@@ -11,7 +11,7 @@
 
 char *setmemory(char *arr, char c, int n)
 {
-	char *ptr;
+	char *ptr = arr;
 
 	while (n--)
 	{
