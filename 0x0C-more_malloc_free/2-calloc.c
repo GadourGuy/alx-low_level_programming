@@ -11,11 +11,13 @@
 
 char *setmemory(char *arr, char c, int n)
 {
+	char *ptr;
+
 	while (n--)
 	{
-		*arr++ = c;
+		*ptr++ = c;
 	}
-	return (arr);
+	return (ptr);
 }
 /**
  * _calloc -  allocates memory for an array.
