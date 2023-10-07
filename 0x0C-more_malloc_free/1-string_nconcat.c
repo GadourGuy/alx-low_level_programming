@@ -26,7 +26,7 @@ unsigned int length(char *str)
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int i, size1, size2, check;
+	unsigned int i, size1, size2;
 	char *new;
 
 	if (s1 == NULL)
@@ -34,11 +34,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	if (s2 == NULL)
 		s2 = "";
 	size1 = length(s1);
-	check = length(s2);
-	for (size2 = 0; size2 <= n; size2++)
-		;
-	if (size2 >= check)
-		size2 = check;
+	size2 = length(s2);
 	new = malloc(size1 + n + 1);
 	if (new == NULL)
 	{
@@ -50,7 +46,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		{
 			new[i] = s1[i];
 		}
-		for (i = size1; i < (size1 + size2); i++)
+		for (i = size1; i < (size1 + n); i++)
 			new[i] = s2[i - size1];
 		new[i] = '\0';
 		return (new);
