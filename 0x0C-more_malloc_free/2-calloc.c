@@ -5,13 +5,15 @@
  * @arr: array to be filled
  * @c: character used in memory
  * @n: number of bytes filled
+ *
+ * Return: pointer to set memory
  */
 
-char *setmemory(char *arr, char b, int n)
+char *setmemory(char *arr, char c, int n)
 {
 	while (n--)
 	{
-		*arr++ = b;
+		*arr++ = c;
 	}
 	return (arr);
 }
@@ -36,6 +38,6 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	{
 		return (NULL);
 	}
-	setmemory(array, 0, sizeof(int) * nmemb); 
+	setmemory(array, 0, sizeof(int) * nmemb);
 	return (array);
 }
