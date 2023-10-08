@@ -40,6 +40,6 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	{
 		return (NULL);
 	}
-	setmemory(array, 0, sizeof(int) * nmemb);
+	setmemory(array, 0, size * nmemb);
 	return (array);
 }
