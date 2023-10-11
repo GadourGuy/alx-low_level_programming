@@ -24,10 +24,9 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(2);
 	}
-	while (i)
+	while (i--)
 	{
 		printf("%02hhx%s", *b++, i ? " " : "\n");
-		i--;
 	}
 	return (0);
 }
