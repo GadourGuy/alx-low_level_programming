@@ -1,1 +1,1 @@
-First day of learning C
+C programming language basics and projects
