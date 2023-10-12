@@ -7,6 +7,6 @@
  */
 int main(void)
 {
-    print_strings("\n", 2, "Hey", "I love ayat");
+    print_all("ceis", 'B', 3, NULL);
     return (0);
 }
