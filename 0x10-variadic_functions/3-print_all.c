@@ -81,7 +81,7 @@ void print_all(const char * const format, ...)
 				printing[j].f(ap);
 				printf(", ");
 			}
-			else if (format[i] == printing[j].search[0])
+			if (format[i] == printing[j].search[0] && !(format[i + 1]))
 			{
 				printing[j].f(ap);
 			}
