@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * _realloc - reallocates memory
+ * _re - reallocates memory
  * @size: size of new list.
  * @h: list to be updated
  * @new: new list
