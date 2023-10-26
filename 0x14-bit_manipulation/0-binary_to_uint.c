@@ -48,10 +48,11 @@ int check_binary(const char *b)
 unsigned int binary_to_uint(const char *b)
 {
 	unsigned int j = 0;
-	int len = strlen(b), i;
+	int len, i;
 
 	if (check_binary(b))
 	{
+		len = strlen(b);
 		for (i = 0; i <= len; i++)
 		{
 			if (b[i] == '1')
