@@ -10,6 +10,7 @@ void print_osabi_more(Elf64_Ehdr h);
 void print_mag(Elf64_Ehdr h)
 {
 	int i;
+
 	printf("  Magic:   ");
 	for (i = 0; i < EI_NIDENT; i++)
 		printf("%2.2x%s", h.e_ident[i], i == EI_NIDENT - 1 ? "\n" : " ");
@@ -227,7 +228,7 @@ void print_ent(Elf64_Ehdr h)
 	{
 		i = 0;
 		length = h.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
-		while(!p[i])
+		while (!p[i])
 			i++;
 		printf("%x", p[i++]);
 		for (; i <= length; i++)
