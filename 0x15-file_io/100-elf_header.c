@@ -1,7 +1,7 @@
 #include "main.h"
 #include <elf.h>
 
-void print_osabi_more(Elf64_Ehdr A);
+void print_osabi_more(Elf64_Ehdr h);
 /**
  * print_mag - prints magic bytes
  * @h: header
@@ -76,8 +76,7 @@ void print_ver(Elf64_Ehdr h)
 		break;
 		case EV_NONE:
 			printf("%s", "");
-		break;
-		break;
+			break;
 	}
 	printf("\n");
 }
@@ -170,11 +169,16 @@ void print_ty(Elf64_Ehdr h)
 {
 	char *f = (char *)&h.e_type;
 	int i = 0;
+	unsigned short type;
 
 	printf("  Type:                              ");
 	if (h.e_ident[EI_DATA] == ELFDATA2MSB)
 		i = 1;
-	switch (f[i])
+	if (i == 1)
+		type = ((unsigned short)f[i] << 8) | (unsigned short)f[i - 1];
+	else
+		type = *((unsigned short *)f);
+	switch (type)
 	{
 		case ET_NONE:
 			printf("NONE (none)");
@@ -193,7 +197,7 @@ void print_ty(Elf64_Ehdr h)
 			break;
 		default:
 			printf("<unknown>: %x", f[i]);
-		break;
+			break;
 	}
 	printf("\n");
 }
@@ -271,5 +275,5 @@ int main(int argc, char *a[])
 	print_ent(h);
 	if (close(fd))
 		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n", fd), exit(98);
-	return (1);
+	return (0);
 }
