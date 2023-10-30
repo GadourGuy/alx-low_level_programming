@@ -30,14 +30,22 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, WRITE_ERROR, argv[2]), exit(99);
 	while ((R = read(fd1, buf, READ_BUF_SIZE)) > 0)
 		if (write(fd2, buf, R) != R)
-			dprintf(STDERR_FILENO, WRITE_ERROR, argv[2]), exit(99);
+		{
+			dprintf(STDERR_FILENO, WRITE_ERROR, argv[2]);
+			close(fd1);
+			close(fd2);
+			exit(99);
+		}
 	if (R == -1)
-		dprintf(STDERR_FILENO, READ_ERROR, argv[1]), exit(98);
-	fd1 = close(fd1);
-	fd2 = close(fd2);
-	if (fd1)
+	{
+		dprintf(STDERR_FILENO, READ_ERROR, argv[1]);
+		close(fd1);
+		close(fd2);
+		exit(99);
+	}
+	if (close(fd1) == -1)
 		dprintf(STDERR_FILENO, CLOSE_ERROR, fd1), exit(100);
-	if (fd2)
+	if (close(fd2) == -1)
 		dprintf(STDERR_FILENO, CLOSE_ERROR, fd2), exit(100);
 	return (1);
 }
