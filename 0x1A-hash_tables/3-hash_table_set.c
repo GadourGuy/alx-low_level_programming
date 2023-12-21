@@ -3,7 +3,7 @@
 /**
  * hash_table_set - adds an element to table
  * @ht: our hash table
- * @key: is the key. key can not be an empty
+ * @key: is the key. key can not be empty
  * @value: value associated with the key
  *
  * Return: 1 if it succeeded, 0 otherwise
@@ -11,22 +11,34 @@
 
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	hash_node_t *new = malloc(sizeof(hash_node_t)), *current;
-	unsigned long int i, idx;
+    hash_node_t *new = malloc(sizeof(hash_node_t));
+    unsigned long int i, idx;
 
-	if (ht == NULL || new == NULL || !key || !value)
-		return (0);
-	new->key = strdup(key);
-	new->value = strdup(value);
-	idx = hash_djb2((const unsigned char *)new->key);
-	for (i = 0; i < ht->size; i++)
-	{
-		if (idx == hash_djb2((const unsigned char *)ht->array[i]->key))
-		{
-			current = ht->array[i];
-			while (current != NULL)
-			{
-				if (strcmp(current->key, key) == 0)
+    if (ht == NULL || new == NULL || !key || !value)
+        return (0);
+
+    new->key = strdup(key);
+    new->value = strdup(value);
+
+    if (!new->key || !new->value)
+    {
+        free(new->key);
+        free(new->value);
+        free(new);
+        return (0);
+    }
+
+    idx = hash_djb2((const unsigned char *)new->key);
+
+    for (i = 0; i < ht->size; i++)
+    {
+        if (idx == hash_djb2((const unsigned char *)ht->array[i]->key))
+        {
+            hash_node_t *current = ht->array[i];
+
+            while (current != NULL)
+            {
+                if (strcmp(current->key, key) == 0)
                 {
                     free(current->value);
                     current->value = strdup(value);
@@ -51,3 +63,4 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
     return (1);
 }
+
