@@ -11,56 +11,35 @@
 
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-    hash_node_t *new = malloc(sizeof(hash_node_t));
-    unsigned long int i, idx;
+	hash_node_t *new, *current;
+	unsigned long int idx;
 
-    if (ht == NULL || new == NULL || !key || !value)
-        return (0);
-
-    new->key = strdup(key);
-    new->value = strdup(value);
-
-    if (!new->key || !new->value)
-    {
-        free(new->key);
-        free(new->value);
-        free(new);
-        return (0);
-    }
-
-    idx = hash_djb2((const unsigned char *)new->key);
-
-    for (i = 0; i < ht->size; i++)
-    {
-        if (idx == hash_djb2((const unsigned char *)ht->array[i]->key))
-        {
-            hash_node_t *current = ht->array[i];
-
-            while (current != NULL)
-            {
-                if (strcmp(current->key, key) == 0)
-                {
-                    free(current->value);
-                    current->value = strdup(value);
-                    if (!current->value)
-                        return (0);
-                    free(new->key);
-                    free(new->value);
-                    free(new);
-                    return (1);
-                }
-                current = current->next;
-            }
-
-            new->next = ht->array[i];
-            ht->array[i] = new;
-            return (1);
-        }
-    }
-
-    new->next = ht->array[idx];
-    ht->array[idx] = new;
-
-    return (1);
+	if (ht == NULL || !key || !value)
+		return (0);
+	idx = hash_djb2((const unsigned char *)key);
+	current = ht->array[idx];
+	while (current)
+	{
+		if (strcmp(current->key, key) == 0)
+		{
+			free(current->value);
+			current->value = strdup(value);
+			if (!current->value)
+				return (0);
+			return (1);
+		}
+		current = current->next;
+	}
+	new = malloc(sizeof(hash_node_t));
+	if (!new)
+		return (0);
+	new->key = strdup(key);
+	if (!new->key)
+		return (0);
+	new->value = strdup(value);
+	if (!new->value)
+		return (0);
+	new->next = ht->array[idx];
+	ht->array[idx] = new;
+	return (1);
 }
-
