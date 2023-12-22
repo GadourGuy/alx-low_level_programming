@@ -16,7 +16,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (ht == NULL || !key || !value)
 		return (0);
-	idx = hash_djb2((const unsigned char *)key);
+	idx = hash_djb2((const unsigned char *)key) % ht->size;
 	current = ht->array[idx];
 	while (current)
 	{
@@ -35,10 +35,16 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 	new->key = strdup(key);
 	if (!new->key)
+	{
+		free(new);
 		return (0);
+	}
 	new->value = strdup(value);
 	if (!new->value)
+	{
+		free(new);
 		return (0);
+	}
 	new->next = ht->array[idx];
 	ht->array[idx] = new;
 	return (1);
