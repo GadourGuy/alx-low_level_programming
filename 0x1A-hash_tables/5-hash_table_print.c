@@ -24,13 +24,10 @@ void hash_table_print(const hash_table_t *ht)
 		current = ht->array[i];
 		while (current)
 		{
-			if ((current->key) && (current->value))
-			{
-				if (flag == 1)
-					printf(", ");
-				printf("'%s': '%s'", current->key, current->value);
-				flag = 1;
-			}
+			if (flag == 1)
+				printf(", ");
+			printf("'%s': '%s'", current->key, current->value);
+			flag = 1;
 			current = current->next;
 		}
 	}
